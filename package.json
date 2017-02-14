@@ -1,0 +1,43 @@
+{
+  "name": "normify-listeners",
+  "version": "0.0.0",
+  "description": "Makes event APIs behave in the standard way",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src/** || echo Linting failed with the above errors",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify src/index.js -o dist/normify-listeners.js -s normifyListeners",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxkfranz/normify-listeners.git"
+  },
+  "keywords": [
+    "normify",
+    "addEventListener",
+    "listener",
+    "fix",
+    "standard",
+    "passive",
+    "options",
+    "capture",
+    "once",
+    "useCapture",
+    "browser",
+    "api"
+  ],
+  "author": {
+    "name": "Max Franz",
+    "email": "maxkfranz@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxkfranz/normify-listeners/issues"
+  },
+  "homepage": "https://github.com/maxkfranz/normify-listeners#readme",
+  "devDependencies": {
+    "browserify": "^14.0.0",
+    "eslint": "^3.15.0"
+  }
+}

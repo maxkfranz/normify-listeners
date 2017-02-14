@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>normify-listeners demo</title>
+
+    <script src="./dist/normify-listeners.js"></script>
+
+    <style>
+      html {
+        touch-action: manipulation;
+      }
+
+      .tgt {
+        width: 200px;
+        height: 200px;
+        margin: 1em;
+        float: left;
+      }
+
+      h2 {
+        clear: both;
+      }
+
+      .capture-undefined {
+        background: cyan;
+      }
+
+      .capture-true {
+        background: magenta;
+      }
+
+      .opts-capture-true {
+        background: yellow;
+      }
+
+      .opts-passive-true {
+        background: black;
+        color: #fff;
+      }
+
+      body {
+        height: 9999px;
+        padding: 50px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>normify-listeners demo</h1>
+
+    <h2><code>touchstart</code></h2>
+
+    <button class="touch enable-window">Enable listeners on window</button>
+    <button class="touch enable-tgts">Enable listeners on boxes</button>
+    <br />
+
+    <div class="tgt capture-undefined touch">
+      <code>useCaptureOrOptions: undefined</code>
+    </div>
+
+    <div class="tgt capture-true touch">
+      <code>useCapture: true</code>
+    </div>
+
+    <div class="tgt opts-capture-true touch">
+      <code>options: { capture: true }</code>
+    </div>
+
+    <div class="tgt opts-passive-true touch">
+      <code>options: { passive: true }</code>
+    </div>
+
+    <h2><code>mousedown</code></h2>
+
+    <button class="mouse enable-window">Enable listeners on window</button>
+    <button class="mouse enable-tgts">Enable listeners on boxes</button>
+    <br />
+
+    <div class="tgt capture-undefined mouse">
+      <code>useCaptureOrOptions: undefined</code>
+    </div>
+
+    <div class="tgt capture-true mouse">
+      <code>useCapture: true</code>
+    </div>
+
+    <div class="tgt opts-capture-true mouse">
+      <code>options: { capture: true }</code>
+    </div>
+
+    <div class="tgt opts-passive-true mouse">
+      <code>options: { passive: true }</code>
+    </div>
+
+    <h2><code>wheel</code></h2>
+
+    <button class="wheel enable-window">Enable listeners on window</button>
+    <button class="wheel enable-tgts">Enable listeners on boxes</button>
+    <br />
+
+    <div class="tgt capture-undefined wheel">
+      <code>useCaptureOrOptions: undefined</code>
+    </div>
+
+    <div class="tgt capture-true wheel">
+      <code>useCapture: true</code>
+    </div>
+
+    <div class="tgt opts-capture-true wheel">
+      <code>options: { capture: true }</code>
+    </div>
+
+    <div class="tgt opts-passive-true wheel">
+      <code>options: { passive: true }</code>
+    </div>
+
+    <script>
+      normifyListeners();
+
+      var $ = document.querySelector.bind( document );
+
+      $('.enable-window.touch').addEventListener('click', function(){
+        window.addEventListener( 'touchstart', function( e ){
+          e.preventDefault();
+          console.log('window.addEventListener( "touchstart", fn )');
+        } );
+      });
+
+      $('.enable-tgts.touch').addEventListener('click', function(){
+        $('.capture-undefined.touch').addEventListener( 'touchstart', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "touchstart", fn )');
+        } );
+
+        $('.capture-true.touch').addEventListener( 'touchstart', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "touchstart", fn, true )');
+        }, true );
+
+        $('.opts-capture-true.touch').addEventListener( 'touchstart', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "touchstart", fn, { capture: true } )');
+        }, { capture: true } );
+
+        $('.opts-passive-true.touch').addEventListener( 'touchstart', function( e ){
+          console.log('addEventListener( "touchstart", fn, { passive: true } )');
+        }, { passive: true } );
+      });
+
+      $('.enable-window.mouse').addEventListener('click', function(){
+        window.addEventListener( 'mousedown', function( e ){
+          e.preventDefault();
+          console.log('window.addEventListener( "mousedown", fn )');
+        } );
+      });
+
+      $('.enable-tgts.mouse').addEventListener('click', function(){
+        $('.capture-undefined.mouse').addEventListener( 'mousedown', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "mousedown", fn )');
+        } );
+
+        $('.capture-true.mouse').addEventListener( 'mousedown', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "mousedown", fn, true )');
+        }, true );
+
+        $('.opts-capture-true.mouse').addEventListener( 'mousedown', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "mousedown", fn, { capture: true } )');
+        }, { capture: true } );
+
+        $('.opts-passive-true.mouse').addEventListener( 'mousedown', function( e ){
+          console.log('addEventListener( "mousedown", fn, { passive: true } )');
+        }, { passive: true } );
+      });
+
+      $('.enable-window.wheel').addEventListener('click', function(){
+        window.addEventListener( 'wheel', function( e ){
+          e.preventDefault();
+          console.log('window.addEventListener( "wheel", fn )');
+        } );
+      });
+
+      $('.enable-tgts.wheel').addEventListener('click', function(){
+        $('.capture-undefined.wheel').addEventListener( 'wheel', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "wheel", fn )');
+        } );
+
+        $('.capture-true.wheel').addEventListener( 'wheel', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "wheel", fn, true )');
+        }, true );
+
+        $('.opts-capture-true.wheel').addEventListener( 'wheel', function( e ){
+          e.preventDefault();
+          console.log('addEventListener( "wheel", fn, { capture: true } )');
+        }, { capture: true } );
+
+        $('.opts-passive-true.wheel').addEventListener( 'wheel', function( e ){
+          console.log('addEventListener( "wheel", fn, { passive: true } )');
+        }, { passive: true } );
+      });
+    </script>
+  </body>
+</html>
