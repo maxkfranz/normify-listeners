@@ -1,5 +1,7 @@
 # normify-listeners
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/maxkfranz/normify-listeners.svg)](https://greenkeeper.io/)
+
 Makes event APIs behave in the standard way
 
 ## Installation
